@@ -1,0 +1,60 @@
+body {
+  background-color: #FCC10C;
+  background-image: url('/static/img/noise.png');
+  font-family: 'Oswald', sans-serif;
+}
+
+#content {
+  position: relative;
+}
+
+#info-block {
+  font-size: 24pt;
+  text-align: center;
+  padding: 20px 30px;
+  background-color: rgba(0, 0, 0, 0.15);
+  text-shadow: 0 0 16px rgba(252, 193, 12, 1.0);
+  box-shadow: 0 0 100px rgba(0, 0, 0, 0.3);
+  border: 1px solid rgba(0, 0, 0, 0.1);
+  border-radius: 15px;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  margin-right: -50%;
+  transform: translate(-50%, -50%)
+}
+
+#pullo {
+  opacity: 0.4;
+  width: 124px;
+  height: 400px;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  margin: -200px 0 0 -62px;
+  filter: drop-shadow(5px 5px 5px rgba(0,0,0,0.3));
+  -webkit-filter: drop-shadow(5px 5px 5px rgba(0,0,0,0.3));
+  animation:5s rotateRight infinite linear;
+}
+
+@keyframes rotateRight{
+  0%{ transform:rotate(0deg); transform-origin:50% 50%; }
+  100%{ transform:rotate(360deg); }
+}
+
+#selite {
+  font-size: 8pt;
+  font-family: monospace;
+  font-weight: bold;
+  padding: 3px;
+  margin: 20px auto 0 auto;
+  border: 1px solid rgba(0, 0, 0, 0.3);
+  opacity: 0.3;
+}
+
+#selite:hover {
+  opacity: 1.0;
+}
