@@ -48,9 +48,6 @@ def getJalluLitrat():
 def jallua():
     jalluLitroja, stores = getJalluLitrat()
     return render_template('index.html',
-                           # yks="{0:.2f}".format(jalluLitroja[0]),
-                           # kolme="{0:.2f}".format(jalluLitroja[1]),
-                           # sum="{0:.2f}".format(sum(jalluLitroja)),
                            yks=jalluLitroja[0],
                            kolme=jalluLitroja[1],
                            jallusum=sum(jalluLitroja),
