@@ -6,6 +6,7 @@ import json
 
 app = Flask(__name__)
 
+
 def getJalluLitrat():
 
     jallut = [
@@ -19,10 +20,11 @@ def getJalluLitrat():
         ('106933', 'Jaloviina *** muovipullo', 0.2, 3),
     ]
 
-    jalluLitroja = [0.0, 0.0] # [yhden, kolmen]
+    jalluLitroja = [0.0, 0.0]  # [yhden, kolmen]
 
     for jallu in jallut:
-        r = requests.get('http://www.alko.fi/api/product/Availability?productId={}&cityId=jyv%C3%A4skyl%C3%A4&language=fi'.format(jallu[0]))
+        r = requests.get(
+            'http://www.alko.fi/api/product/Availability?productId={}&cityId=jyv%C3%A4skyl%C3%A4&language=fi'.format(jallu[0]))
         for store in json.loads(r.text):
             if jallu[3] == 1:
                 jalluLitroja[0] += (float(store['Amount']) * jallu[2])
@@ -31,11 +33,12 @@ def getJalluLitrat():
 
     return jalluLitroja
 
+
 @app.route('/')
 def jallua():
     jalluLitroja = getJalluLitrat()
     return render_template('index.html',
-        yks   = "{0:.2f}".format(jalluLitroja[0]),
-        kolme = "{0:.2f}".format(jalluLitroja[1]),
-        sum   = "{0:.2f}".format(sum(jalluLitroja))
-    )
+                           yks="{0:.2f}".format(jalluLitroja[0]),
+                           kolme="{0:.2f}".format(jalluLitroja[1]),
+                           sum="{0:.2f}".format(sum(jalluLitroja))
+                           )
