@@ -33,6 +33,7 @@
         <ul>
           {% for store in stores.keys() %}<li>{{' '.join(store.split(' ')[1:]).title() }}: {{ "{0:.2f}".format(stores[store][0]) }} l / {{ "{0:.2f}".format(stores[store][1]) }} l</li>
           {% endfor %}
+        </ul>
       </div>
     </div>
     <script type="text/javascript">
