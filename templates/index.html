@@ -14,20 +14,36 @@
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
     <title>Jallua</title>
     <link rel="stylesheet" href="/static/css/style.css">
-    <link href="https://fonts.googleapis.com/css?family=Oswald:400,700" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Oswald:400,700|Roboto+Mono" rel="stylesheet">
   </head>
 
   <body>
     <div class="content">
-      <img id="pullo" src="http://jallu.loota.xyz/static/img/jallu-small.png">
+      <img id="pullo" alt="Mmm... Jallua..." src="http://jallu.loota.xyz/static/img/jallu-small.png">
       <div id="info-block">Jyväskylän Alkoissa<br>
         on saatavilla
-        <strong>{{ sum }}</strong> litraa<br>
-        Jallua. Ei hätää.
+        <strong id="litrat">{{ "{0:.2f}".format(jallusum) }}</strong> litraa<br>
+        Jallua. {% if (jallusum < 200) %}Kohta loppuu!{% else %}Ei hätää.{% endif %}
         <p id="selite">
-          ★ {{ yks }} l, ★★★ {{ kolme }} l
+          ★ {{ "{0:.2f}".format(yks) }} l, ★★★ {{ "{0:.2f}".format(kolme) }} l
         </p>
       </div>
+      <div id="store-block">
+        <strong id="store-header">Alkon nimi: ★/★★★</strong>
+        <ul>
+          {% for store in stores.keys() %}<li>{{' '.join(store.split(' ')[1:]).title() }}: {{ "{0:.2f}".format(stores[store][0]) }} l / {{ "{0:.2f}".format(stores[store][1]) }} l</li>
+          {% endfor %}
+      </div>
     </div>
+    <script type="text/javascript">
+      var litrat = document.getElementById('litrat');
+      var store_block = document.getElementById('store-block');
+      litrat.onclick = toggle_stores;
+      store_block.onclick = toggle_stores;
+      function toggle_stores() {
+        var div = document.getElementById('store-block');
+        div.style.display = div.style.display === 'block' ? 'none' : 'block';
+      }
+    </script>
   </body>
 </html>
